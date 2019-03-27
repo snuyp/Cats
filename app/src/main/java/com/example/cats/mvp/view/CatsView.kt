@@ -8,6 +8,6 @@ import com.example.cats.mvp.model.Cats
 
 @StateStrategyType(AddToEndSingleStrategy::class)
 interface CatsView : MvpView {
-    fun showCats(rates : List<Cats>)
+    fun showCats(cats : ArrayList<Cats>)
     fun error(message : String)
 }

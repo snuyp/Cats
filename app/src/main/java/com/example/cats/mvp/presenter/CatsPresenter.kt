@@ -14,16 +14,16 @@ class CatsPresenter : MvpPresenter<CatsView>() {
 
     private var service = App.component.getService
 
-    lateinit var disposable: Disposable
+    private lateinit var disposable: Disposable
 
     override fun onFirstViewAttach() {
         App.component.inject(this)
-        getCats()
+        getCats(limit = 10,page = 1)
         super.onFirstViewAttach()
     }
 
-    private fun getCats() {
-        disposable = service.getCats(10,1,CatsService.KEY)
+    private fun getCats(limit :Int, page : Int) {
+        disposable = service.getCats(limit,page,CatsService.KEY)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
             .subscribe(

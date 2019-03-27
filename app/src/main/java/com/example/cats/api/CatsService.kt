@@ -15,5 +15,5 @@ interface CatsService {
     @GET("search?")
     fun getCats(@Query("limit") limit : Int,
                 @Query("page") page : Int,
-                @Header("x-api-key") key : String) : Observable<List<Cats>>
+                @Header("x-api-key") key : String) : Observable<ArrayList<Cats>>
 }

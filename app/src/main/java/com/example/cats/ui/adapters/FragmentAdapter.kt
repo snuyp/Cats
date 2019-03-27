@@ -14,7 +14,7 @@ class FragmentAdapter (fm: FragmentManager?, var context: Context) : FragmentPag
         return when (position) {
             0 -> CatsFragment.newInstance()
             1 -> FavoriteCats.newInstance()
-            else -> FavoriteCats.newInstance()
+            else -> CatsFragment.newInstance()
         }
     }
 

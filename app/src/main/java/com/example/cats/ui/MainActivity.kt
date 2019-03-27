@@ -19,7 +19,6 @@ class MainActivity : MvpAppCompatActivity() {
         viewPager.adapter = adapter
 
         val mTabLayout = findViewById<TabLayout>(R.id.tabLayout)
-        mTabLayout.tabMode = TabLayout.MODE_SCROLLABLE
         mTabLayout.setupWithViewPager(viewPager)
     }
 }

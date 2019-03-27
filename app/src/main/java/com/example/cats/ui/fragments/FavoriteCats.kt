@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import com.arellomobile.mvp.MvpAppCompatFragment
 import com.arellomobile.mvp.MvpFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
+import com.example.cats.R
 import com.example.cats.mvp.presenter.CatsPresenter
 import javax.inject.Inject
 
@@ -20,6 +21,7 @@ class FavoriteCats : MvpAppCompatFragment()  {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return super.onCreateView(inflater, container, savedInstanceState)
+        val v = inflater.inflate(R.layout.fragment_favorite_cats,container,false)
+        return v
     }
 }
