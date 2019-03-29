@@ -3,4 +3,8 @@
     <string name="cats">Cats</string>
     <string name="favourite_cats">Favourite cats</string>
     <string name="not_found">Not found</string>
+    <string name="add_favorites">Do you want to add to favorites?</string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
+    <string name="added_to_favorites">Added to favorites</string>
 </resources>

@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.Toast
 import com.arellomobile.mvp.MvpAppCompatFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.example.cats.R
@@ -45,6 +46,7 @@ class CatsFragment : MvpAppCompatFragment(), CatsView {
 
     override fun error(message: String) {
         Log.e("Error",message)
+        Toast.makeText(context,message,Toast.LENGTH_SHORT).show()
     }
 
     override fun onDestroy() {
