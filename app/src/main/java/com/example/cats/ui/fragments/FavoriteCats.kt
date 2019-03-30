@@ -13,13 +13,11 @@ import javax.inject.Inject
 
 class FavoriteCats : MvpAppCompatFragment()  {
 
-
     companion object {
         fun newInstance(): FavoriteCats {
             return  FavoriteCats()
         }
     }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val v = inflater.inflate(R.layout.fragment_favorite_cats,container,false)
         return v

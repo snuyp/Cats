@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName
 class Cats {
     @SerializedName("breeds")
     @Expose
-    var breeds: List<Any>? = null
+    var breeds: List<Breeds>? = null
 
     @SerializedName("categories")
     @Expose

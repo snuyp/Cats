@@ -3,31 +3,28 @@ package com.example.cats.db
 import com.example.cats.mvp.model.Cats
 import io.reactivex.Single
 import javax.inject.Inject
+import javax.inject.Named
 import javax.inject.Singleton
 
 @Singleton
 class CatsRepository @Inject constructor(var showDao: ShowDao) {
 
     fun getAllFavoriteCats(): Single<List<FavoriteCats>> {
-        return showDao.allFavoriteCats
-    }
-
-    fun isFavoriteShow(id: Long): Boolean {
-        return showDao.isFavouriteCats(id) > 0
+        return showDao.allFavoriteCats()
     }
 
     fun insertCatsIntoFavorites(cat: Cats) {
         val favoriteCat = FavoriteCats().apply {
-            id = cat.id
             url = cat.url
+            idS = cat.id
         }
         showDao.insert(favoriteCat)
     }
 
     fun removeCatsFromFavorites(cat: Cats) {
         val favoriteCats = FavoriteCats().apply {
-            id = cat.id
             url = cat.url
+            idS = cat.id
         }
         showDao.remove(favoriteCats)
     }

@@ -30,6 +30,7 @@ class CatsPresenter : MvpPresenter<CatsView>() {
                 { result -> viewState.showCats(result) },
                 { error -> viewState.error(error.toString()) }
             )
+
     }
     fun dispose() = disposable.dispose()
 }
