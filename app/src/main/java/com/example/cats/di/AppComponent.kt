@@ -11,6 +11,7 @@ import com.example.cats.di.modules.RoomModule
 import com.example.cats.mvp.presenter.CatsPresenter
 import com.example.cats.mvp.presenter.RepositoryFavoritesPresenter
 import com.example.cats.ui.adapters.CatsAdapter
+import com.example.cats.ui.adapters.FavoritesAdapter
 import dagger.Component
 import javax.inject.Singleton
 
@@ -24,6 +25,7 @@ interface AppComponent {
     var catRepository: CatsRepository
 
     fun inject(adapter : CatsAdapter)
+    fun inject(adapter : FavoritesAdapter)
     fun inject(presenter : CatsPresenter)
     fun inject(repositoryPresenter : RepositoryFavoritesPresenter)
 }

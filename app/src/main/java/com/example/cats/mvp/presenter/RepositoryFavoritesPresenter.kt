@@ -6,6 +6,7 @@ import com.example.cats.App
 import com.example.cats.db.CatsRepository
 import com.example.cats.mvp.view.FavoritesView
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
@@ -20,23 +21,23 @@ class RepositoryFavoritesPresenter : MvpPresenter<FavoritesView>() {
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
-        App.component.inject(this)
-        loadFavoritesCat()
+
+
     }
 
-    private fun loadFavoritesCat() {
+    fun loadFavoritesCat() {
         disposable = catsRepository.getAllFavoriteCats()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
             .subscribe(
                 { viewState.showCats(it) },
                 { error -> viewState.error(error.toString()) }
-
             )
-
     }
 
-    fun dispose() = disposable.dispose()
+    fun dispose() {
+        disposable.dispose()
+    }
 
 
 }

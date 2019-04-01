@@ -6,7 +6,7 @@ import com.arellomobile.mvp.viewstate.strategy.StateStrategyType
 import com.example.cats.db.FavoriteCats
 import com.example.cats.mvp.model.Cats
 
-
+@StateStrategyType(AddToEndSingleStrategy::class)
 interface FavoritesView : MvpView {
     fun showCats(cats : List<FavoriteCats>)
     fun error(message : String)

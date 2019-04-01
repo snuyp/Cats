@@ -1,5 +1,7 @@
 package com.example.cats.ui.adapters
 
+
+import android.support.design.widget.FloatingActionButton
 import android.support.v7.app.AlertDialog
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -50,6 +52,15 @@ class CatsAdapter(private val cats: ArrayList<Cats>) : RecyclerView.Adapter<Cats
                 }
             }.show()
         }
+
+        holder.downloadButton.setOnClickListener {
+
+            Toast.makeText(
+                holder.itemView.context,
+                holder.itemView.context.getString(R.string.download) + " " + cats[position].id,
+                Toast.LENGTH_SHORT
+            ).show()
+        }
     }
     override fun getItemCount(): Int = cats.size
 }
@@ -57,4 +68,5 @@ class CatsAdapter(private val cats: ArrayList<Cats>) : RecyclerView.Adapter<Cats
 class CatsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     var catImage: ImageView = itemView.findViewById(R.id.cats_image)
+    var downloadButton : FloatingActionButton = itemView.findViewById(R.id.btnDownload)
 }

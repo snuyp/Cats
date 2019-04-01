@@ -30,7 +30,8 @@ class FavoriteCats : MvpAppCompatFragment(), FavoritesView  {
     }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val v = inflater.inflate(R.layout.fragment_favorite_cats,container,false)
-
+        App.component.inject(repositoryPresenter)
+        repositoryPresenter.loadFavoritesCat()
         return v
     }
 
@@ -47,9 +48,9 @@ class FavoriteCats : MvpAppCompatFragment(), FavoritesView  {
         Log.e("Error",message)
         Toast.makeText(context,message, Toast.LENGTH_SHORT).show()
     }
+
     override fun onDestroy() {
         super.onDestroy()
         repositoryPresenter.dispose()
-
     }
 }
