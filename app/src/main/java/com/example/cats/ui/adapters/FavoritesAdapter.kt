@@ -6,29 +6,26 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.example.cats.App
 import com.example.cats.R
 import com.example.cats.db.CatsRepository
-import com.example.cats.mvp.model.Cats
-import java.util.*
+import com.example.cats.db.FavoriteCats
 import javax.inject.Inject
 
-class CatsAdapter(private val cats: ArrayList<Cats>) : RecyclerView.Adapter<CatsViewHolder>(){
+class FavoritesAdapter (private val cats: List<FavoriteCats>) : RecyclerView.Adapter<FavoritesViewHolder>(){
 
     @Inject
     lateinit var catsRepository: CatsRepository
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CatsViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoritesViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val itemView = inflater.inflate(R.layout.card_cats, parent, false)
-        App.component.inject(this)
-        return CatsViewHolder(itemView)
+        //App.component.inject(this)
+        return FavoritesViewHolder(itemView)
     }
 
-    override fun onBindViewHolder(holder: CatsViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: FavoritesViewHolder, position: Int) {
         Glide.with(holder.itemView.context)
             .load(cats[position].url)
             .apply(RequestOptions().placeholder(R.drawable.ic_filter_hdr_black_24dp))
@@ -41,12 +38,7 @@ class CatsAdapter(private val cats: ArrayList<Cats>) : RecyclerView.Adapter<Cats
                 setPositiveButton(context.getString(R.string.no)) { _, _ -> }
 
                 setNegativeButton(context.getString(R.string.yes)) { _, _ ->
-                    catsRepository.insertCatsIntoFavorites(cats[position])
-                    Toast.makeText(
-                        holder.itemView.context,
-                        context.getString(R.string.added_to_favorites) + " " + cats[position].id,
-                        Toast.LENGTH_SHORT
-                    ).show()
+
                 }
             }.show()
         }
@@ -54,7 +46,7 @@ class CatsAdapter(private val cats: ArrayList<Cats>) : RecyclerView.Adapter<Cats
     override fun getItemCount(): Int = cats.size
 }
 
-class CatsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class FavoritesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     var catImage: ImageView = itemView.findViewById(R.id.cats_image)
 }

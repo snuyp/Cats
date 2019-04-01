@@ -9,6 +9,7 @@ import com.example.cats.di.modules.AppModule
 import com.example.cats.di.modules.RetrofitModule
 import com.example.cats.di.modules.RoomModule
 import com.example.cats.mvp.presenter.CatsPresenter
+import com.example.cats.mvp.presenter.RepositoryFavoritesPresenter
 import com.example.cats.ui.adapters.CatsAdapter
 import dagger.Component
 import javax.inject.Singleton
@@ -24,5 +25,5 @@ interface AppComponent {
 
     fun inject(adapter : CatsAdapter)
     fun inject(presenter : CatsPresenter)
-
+    fun inject(repositoryPresenter : RepositoryFavoritesPresenter)
 }

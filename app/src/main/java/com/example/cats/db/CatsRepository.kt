@@ -1,6 +1,7 @@
 package com.example.cats.db
 
 import com.example.cats.mvp.model.Cats
+import io.reactivex.Flowable
 import io.reactivex.Single
 import javax.inject.Inject
 import javax.inject.Named
@@ -9,7 +10,7 @@ import javax.inject.Singleton
 @Singleton
 class CatsRepository @Inject constructor(var showDao: ShowDao) {
 
-    fun getAllFavoriteCats(): Single<List<FavoriteCats>> {
+    fun getAllFavoriteCats(): Flowable<List<FavoriteCats>> {
         return showDao.allFavoriteCats()
     }
 
