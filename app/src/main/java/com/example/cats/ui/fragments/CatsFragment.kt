@@ -1,13 +1,12 @@
 package com.example.cats.ui.fragments
 
 import android.os.Bundle
+import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.Toast
 import com.arellomobile.mvp.MvpAppCompatFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
@@ -25,6 +24,8 @@ class CatsFragment : MvpAppCompatFragment(), CatsView {
     @InjectPresenter
     internal lateinit var catsPresenter : CatsPresenter
 
+    internal lateinit var swipeRefreshLayout: SwipeRefreshLayout
+
     companion object {
         fun newInstance(): CatsFragment {
             return  CatsFragment()
@@ -33,7 +34,9 @@ class CatsFragment : MvpAppCompatFragment(), CatsView {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val v = inflater.inflate(R.layout.fragment_cats,container,false)
+        swipeRefreshLayout = v.findViewById(R.id.swipe_refresh)
 
+        swipeRefreshLayout.setOnRefreshListener { catsPresenter.getCats(10,++catsPresenter.page, true)}
         return v
     }
     override fun showCats(cats : ArrayList<Cats>) {
@@ -43,6 +46,10 @@ class CatsFragment : MvpAppCompatFragment(), CatsView {
             adapter = CatsAdapter(cats)
         }
     }
+    override fun setRefresh(isRefreshing: Boolean) {
+        swipeRefreshLayout.isRefreshing = isRefreshing
+    }
+
 
     override fun error(message: String) {
         Log.e("Error",message)

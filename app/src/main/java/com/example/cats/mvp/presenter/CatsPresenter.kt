@@ -16,21 +16,29 @@ class CatsPresenter : MvpPresenter<CatsView>() {
 
     private lateinit var disposable: Disposable
 
+    var page = 1
+
     override fun onFirstViewAttach() {
         App.component.inject(this)
-        getCats(limit = 10,page = 1)
+        getCats(limit = 10,page = page,isUpdate = false)
         super.onFirstViewAttach()
     }
 
-    private fun getCats(limit :Int, page : Int) {
-        disposable = service.getCats(limit,page,CatsService.KEY)
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeOn(Schedulers.io())
-            .subscribe(
-                { result -> viewState.showCats(result) },
-                { error -> viewState.error(error.toString()) }
-            )
-
+    fun getCats(limit :Int, page : Int, isUpdate : Boolean) {
+        if(!isUpdate) {
+            disposable = getNewCats(limit,page)
+        } else {
+            disposable = getNewCats(limit,page)
+            viewState.setRefresh(false)
+        }
     }
+    private fun getNewCats(limit :Int, page : Int) = service.getCats(limit, page, CatsService.KEY)
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribeOn(Schedulers.io())
+        .subscribe(
+            { viewState.showCats(it)},
+            { error -> viewState.error(error.toString())}
+        )
+
     fun dispose() = disposable.dispose()
 }

@@ -10,4 +10,5 @@ import com.example.cats.mvp.model.Cats
 interface CatsView : MvpView {
     fun showCats(cats : ArrayList<Cats>)
     fun error(message : String)
+    fun setRefresh(isRefreshing: Boolean)
 }
