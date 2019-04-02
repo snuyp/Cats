@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.cats.App
 import com.example.cats.R
+import com.example.cats.common.DownloadAndSaveImageTask
 import com.example.cats.db.CatsRepository
 import com.example.cats.db.FavoriteCats
 import javax.inject.Inject
@@ -55,11 +56,7 @@ class FavoritesAdapter (private val cats: List<FavoriteCats>) : RecyclerView.Ada
             true
         }
         holder.downloadButton.setOnClickListener {
-            Toast.makeText(
-                holder.itemView.context,
-                holder.itemView.context.getString(R.string.download) + " " + cats[position].id,
-                Toast.LENGTH_SHORT
-            ).show()
+            DownloadAndSaveImageTask(holder.itemView.context).execute(cats[position].url)
         }
 
     }

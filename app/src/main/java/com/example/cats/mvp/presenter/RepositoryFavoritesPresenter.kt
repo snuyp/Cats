@@ -21,8 +21,6 @@ class RepositoryFavoritesPresenter : MvpPresenter<FavoritesView>() {
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
-
-
     }
 
     fun loadFavoritesCat() {
@@ -38,6 +36,4 @@ class RepositoryFavoritesPresenter : MvpPresenter<FavoritesView>() {
     fun dispose() {
         disposable.dispose()
     }
-
-
 }

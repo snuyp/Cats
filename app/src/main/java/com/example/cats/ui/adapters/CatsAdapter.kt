@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.cats.App
 import com.example.cats.R
+import com.example.cats.common.DownloadAndSaveImageTask
 import com.example.cats.db.CatsRepository
 import com.example.cats.mvp.model.Cats
 import java.util.*
@@ -54,12 +55,7 @@ class CatsAdapter(private val cats: ArrayList<Cats>) : RecyclerView.Adapter<Cats
         }
 
         holder.downloadButton.setOnClickListener {
-
-            Toast.makeText(
-                holder.itemView.context,
-                holder.itemView.context.getString(R.string.download) + " " + cats[position].id,
-                Toast.LENGTH_SHORT
-            ).show()
+            DownloadAndSaveImageTask(holder.itemView.context).execute(cats[position].url)
         }
     }
     override fun getItemCount(): Int = cats.size

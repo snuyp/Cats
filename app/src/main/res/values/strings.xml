@@ -8,7 +8,9 @@
     <string name="yes">Yes</string>
     <string name="added_to_favorites">Cat added to favorites </string>
     <string name="save_on_disk">Save on disk?</string>
-    <string name="download">Download</string>
+
     <string name="want_delete">Do you want to delete?</string>
     <string name="delete">Deleted!</string>
+    <string name="download">Download</string>
+    <string name="failed_to_save_image">Failed to save image."</string>
 </resources>
